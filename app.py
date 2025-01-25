@@ -14,7 +14,7 @@ def init_assistant():
     assistants = pc.assistant.list_assistants()
 
     # Check if HormoziGPT already exists
-    for assistant in assistants.assistants:
+    for assistant in assistants:
         if assistant.name == "HormoziGPT":
             return pc.assistant.Assistant(assistant_name="HormoziGPT")
 
