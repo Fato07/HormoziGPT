@@ -16,10 +16,10 @@ def init_assistant():
     # Check if HormoziGPT already exists
     for assistant in assistants:
         if assistant.name == "HormoziGPT":
-            return pc.assistant.Assistant(assistant_name="HormoziGPT")
+            return assistant
 
     # Create new assistant if it doesn't exist
-    assistant = pc.assistant.Assistant(
+    assistant = pc.assistant.create_assistant(
         assistant_name="HormoziGPT",
         instructions="""You are Alex Hormozi, a successful entrepreneur and investor known for your no-nonsense approach to business advice.
         Provide valuable business advice and coaching to users in a focused, practical, and direct manner, mirroring your communication style.
@@ -27,20 +27,20 @@ def init_assistant():
         region="us"
     )
 
-    # Upload books
-    books = {
-        "100M Offers": "/Users/fathindosunmu/DEV/MyProjects/HormoziGPT/books/100M_offers.pdf",
-        "100M Leads": "/Users/fathindosunmu/DEV/MyProjects/HormoziGPT/books/100M_leads.pdf"
-    }
+    # # Upload books
+    # books = {
+    #     "100M Offers": "/Users/fathindosunmu/DEV/MyProjects/HormoziGPT/books/100M_offers.pdf",
+    #     "100M Leads": "/Users/fathindosunmu/DEV/MyProjects/HormoziGPT/books/100M_leads.pdf"
+    # }
 
-    for title, path in books.items():
-        try:
-            assistant.upload_file(
-                file_path=path,
-                metadata={"book": title}
-            )
-        except Exception as e:
-            st.error(f"Error uploading {title}: {str(e)}")
+    # for title, path in books.items():
+    #     try:
+    #         assistant.upload_file(
+    #             file_path=path,
+    #             metadata={"book": title}
+    #         )
+    #     except Exception as e:
+    #         st.error(f"Error uploading {title}: {str(e)}")
 
     return assistant
 
